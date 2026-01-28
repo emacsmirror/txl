@@ -186,8 +186,8 @@ go."
                      :type "POST"
                      :sync t
                      :parser 'json-read
-                     :data `(("auth_key"            . ,txl-deepl-api-key)
-                             ("split_sentences"     . ,(pcase txl-deepl-split-sentences
+                     :headers `(("Authorization" . ,(concat "DeepL-Auth-Key " txl-deepl-api-key)))
+                     :data `(("split_sentences"     . ,(pcase txl-deepl-split-sentences
                                                          ((pred not) "0")
                                                          ('nonewlines "nonewlines")
                                                          ((pred (lambda (x) (eq t x))) "1")))
